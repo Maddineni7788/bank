@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cashier Register</title>
+    <!-- Add your CSS links or styles here -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://www.livelaw.in/h-upload/2020/02/11/750x450_370090-cheque.jpg'); /* Replace with your actual image path */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>User Register</h2>
+        <form method="post" action="#">
+            {% csrf_token %}
+            <label style="color:black" for="username">Username:</label>
+            <input type="text" name="username" required>
+            <br>
+            <label style="color:black" for="email">Email:</label>
+            <input type="email" name="email" required>
+            <br>
+            <label style="color:black" for="password">Password:</label>
+            <input type="password" name="password" required>
+            <br>
+            <label style="color:black" for="pass2">Confirm Password:</label>
+            <input type="password" name="pass2" required>
+            <br>
+            <button type="submit">Register</button>
+        </form>
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <!-- Add your additional content or scripts here -->
+</body>
+</html>

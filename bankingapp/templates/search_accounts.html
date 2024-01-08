@@ -1,0 +1,40 @@
+<!-- search_accounts.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Accounts</title>
+</head>
+<body>
+
+<h2>Search Accounts</h2>
+
+<form method="get" action="{% url 'bankingapp:search_accounts' %}">
+    <input type="text" name="q" placeholder="Search by name, email, phone, address, or account number" value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
+{% if accounts %}
+    <h3>Search Results</h3>
+    <ul>
+        {% for account in accounts %}
+            <li>
+                <strong>Account Number:</strong> {{ account.account_number }}<br>
+                <strong>Full Name:</strong> {{ account.full_name }}<br>
+                <strong>Email:</strong> {{ account.email }}<br>
+                <strong>Phone:</strong> {{ account.phone }}<br>
+                <strong>Address:</strong> {{ account.address }}<br>
+                <strong>Account Type:</strong> {{ account.get_account_type_display }}<br>
+                <strong>Initial Deposit:</strong> ${{ account.initial_deposit }}
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No accounts found.</p>
+{% endif %}
+
+<a href="{% url 'bankingapp:cashier_mainpage' %}"><button class="btn btn-primary">Back</button></a>
+</body>
+</html>
